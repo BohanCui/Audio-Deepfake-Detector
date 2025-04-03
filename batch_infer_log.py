@@ -6,7 +6,7 @@ ckpt_path = "/Users/lanqingcui/Desktop/tcm_add-main/best_4.pth"
 threshold = -3.73
 log_file = "/Users/lanqingcui/Desktop/tcm_add-main/infer_results.txt"
 
-# 已处理的文件记录
+# Skip processed files
 processed = set()
 if os.path.exists(log_file):
     with open(log_file, "r") as f:
@@ -15,7 +15,7 @@ if os.path.exists(log_file):
             if parts:
                 processed.add(parts[0])
 
-# 全部 .flac 文件
+# find all .flac files
 all_flacs = []
 for root, dirs, files in os.walk(dataset_dir):
     for filename in files:
@@ -23,7 +23,7 @@ for root, dirs, files in os.walk(dataset_dir):
             full_path = os.path.join(root, filename)
             all_flacs.append((filename, full_path))
 
-# 总数 & 未处理数
+# Count total number & numer remained
 total_files = len(all_flacs)
 remaining = [(f, p) for f, p in all_flacs if f not in processed]
 done = total_files - len(remaining)
@@ -33,7 +33,7 @@ print(f"✅ Already processed: {done}")
 print(f"🕒 Remaining: {len(remaining)}")
 print(f"📈 Progress: {done / total_files * 100:.2f}%\n")
 
-# 处理剩下的
+# Handels the rest
 with open(log_file, "a") as log:
     for filename, full_path in remaining:
         print(f"Processing {filename}...")
