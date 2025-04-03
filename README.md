@@ -31,9 +31,6 @@ git checkout a54021305d6b3c
 pip install --editable ./
 ```
 
-
-## PUT data in dataset directory.
-
 ## To test a single wav file with the pretrained model, run:
 ```bash
 python inference.py --ckpt_path=path_to/model.pth --threshold=-3.73 --wav_path=path_to/audio.flac
