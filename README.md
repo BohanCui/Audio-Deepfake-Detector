@@ -6,9 +6,9 @@ This Repository contains the code and pretrained models for the following INTERS
 * **Autor** : Duc-Tuan Truong, Ruijie Tao, Tuan Nguyen, Hieu-Thi Luong, Kong Aik Lee, Eng Siong Chng
 
 ## Pretrained Model
-The pretrained model XLSR can be found at [link](https://dl.fbaipublicfiles.com/fairseq/wav2vec/xlsr2_300m.pt).
 
-You can download pretrained models from [OneDrive](https://entuedu-my.sharepoint.com/:f:/g/personal/truongdu001_e_ntu_edu_sg/El7AV62BKkdKhOYCyB3s2EkBLr-aVdj0doH0HNj9mTIsGA?e=aOlRCB). 
+Download the pretrained model XLSR at [link](https://dl.fbaipublicfiles.com/fairseq/wav2vec/xlsr2_300m.pt). then put it into the directory
+
 
 ## Setting up environment
 Python version: 3.7.16
@@ -31,7 +31,7 @@ git checkout a54021305d6b3c
 pip install --editable ./
 ```
 
-## To test a single wav file with the pretrained model, run:
+## To test a single file with the pretrained model, run:
 ```bash
 python inference.py --ckpt_path=path_to/model.pth --threshold=-3.73 --wav_path=path_to/audio.flac
 ```
