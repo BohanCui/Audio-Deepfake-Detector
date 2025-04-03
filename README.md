@@ -8,7 +8,7 @@ This Repository contains the code and pretrained models for the following INTERS
 ## Pretrained Model
 The pretrained model XLSR can be found at [link](https://dl.fbaipublicfiles.com/fairseq/wav2vec/xlsr2_300m.pt).
 
-We have uploaded pretrained models of our experiments. You can download pretrained models from [OneDrive](https://entuedu-my.sharepoint.com/:f:/g/personal/truongdu001_e_ntu_edu_sg/El7AV62BKkdKhOYCyB3s2EkBLr-aVdj0doH0HNj9mTIsGA?e=aOlRCB). 
+You can download pretrained models from [OneDrive](https://entuedu-my.sharepoint.com/:f:/g/personal/truongdu001_e_ntu_edu_sg/El7AV62BKkdKhOYCyB3s2EkBLr-aVdj0doH0HNj9mTIsGA?e=aOlRCB). 
 
 ## Setting up environment
 Python version: 3.7.16
@@ -31,33 +31,34 @@ git checkout a54021305d6b3c
 pip install --editable ./
 ```
 
-## Training & Testing on fixed-length input
-To train and produce the score for LA set evaluation, run:
-```bash
-python main.py --algo 5
-```
 
-To train and produce the score for DF set evaluation, run:
-```bash
-python main.py --algo 3
-```
-## Scoring
-To get evaluation results of minimum t-DCF and EER (Equal Error Rate), follow these steps:
-```bash
-cd 2021/eval-package
-python main.py --cm-score-file your_LA_score.txt --track LA --subset eval # For LA track evaluation
-python main.py --cm-score-file your_DF_score.txt --track DF --subset eval # For DF track evaluation
-```
-## Inference
-To run inference on a single wav file with the pretrained model, run:
+## PUT data in dataset directory.
+
+## To test a single wav file with the pretrained model, run:
 ```bash
 python inference.py --ckpt_path=path_to/model.pth --threshold=-3.73 --wav_path=path_to/audio.flac
 ```
-The threshold can be obtained when calculating EER on LA or DF set. In this example, the threshold is from DF set
-evaluation.
+
+Example: 
+
+```bash
+python inference.py --ckpt_path=/Users/lanqingcui/Desktop/tcm_add-main/best_4.pth --threshold=-3.73 --wav_path=/Users/lanqingcui/Desktop/tcm_add-main/03a02Nc.flac
+```
+
+## To see the status and log running results: 
+```bash
+python batch_infer_log.py
+```
+## Results are stored in : infer_results.txt
+
+##  To calculate Accuracy:
+
+```bash
+Python calculate_accuracy.py
+```
+
 
 ## Citation
-If you find our repository valuable for your work, please consider giving a start to this repo and citing our paper:
 ```
 @inproceedings{truong24b_interspeech,
   title     = {Temporal-Channel Modeling in Multi-head Self-Attention for Synthetic Speech Detection},
@@ -69,12 +70,6 @@ If you find our repository valuable for your work, please consider giving a star
   issn      = {2958-1796},
 }
 ```
-
-### Acknowledge
-
-Our work is built upon the [conformer-based-classifier-for-anti-spoofing](https://github.com/ErosRos/conformer-based-classifier-for-anti-spoofing) We also follow some parts of the following codebases:
-
-[SSL_Anti-spoofing](https://github.com/TakHemlata/SSL_Anti-spoofing) (for training pipeline).
 
 [conformer](https://github.com/lucidrains/conformer) (for Conformer model architechture).
 
